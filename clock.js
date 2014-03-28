@@ -27,3 +27,4 @@ var obj3 = new DrawWord(90,10,time.getSeconds());
 obj1.draw();
 obj2.draw();
 setInterval("obj3.draw()", 1000);
+
