@@ -10,14 +10,8 @@ DrawWord.prototype.refresh = function() {
   this.now = new Date();
 }
 
-DrawWord.prototype.print = function() {
-  this.refresh();
-  this.context.fillStyle = 'black';
-  this.context.font = "35px arial";
-  this.context.textBaseline = "top";
-  var t = this.now;
-  this.pos_x = this.x;
-  //this & var ?
+DrawWord.prototype.loop = function() {
+  var t = this.now; // this.now?
   var timeline = [t.getHours(), ':', t.getMinutes(), ':', t.getSeconds()];
   
   for(var i in timeline)
@@ -28,9 +22,20 @@ DrawWord.prototype.print = function() {
   }
 }
 
+DrawWord.prototype.print = function(style,font,space) {
+  this.refresh();
+  this.context.fillStyle = style;
+  this.context.font = font;
+  this.context.textBaseline = "top";
+  this.pos_x = this.x;
+  //var t = this.now;
+  //this & var ?
+  this.loop();
+}
+
 var clock = new DrawWord(10,10);
-var charcolor = 'black';
+var charstyle = 'black';
 var font = '35px arial';
 var charspace = 50; //px
 
-setInterval("clock.print()", 1000);
+setInterval("clock.print(charstyle,font,charspace)", 1000);
