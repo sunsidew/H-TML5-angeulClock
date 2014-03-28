@@ -18,14 +18,14 @@ DrawBoard.prototype.DrawGrid = function() {
         this.context.fillText(this.board[i][j] ,this.x+charspace*j, this.y+charspace*i);
     }
   }
-}
+};
 
 DrawBoard.prototype.print = function(style,font,space) {
   this.context.fillStyle = style;
   this.context.font = font;
   this.context.textBaseline = "top";
   this.DrawGrid();
-}
+};
 
 var timeboard = new DrawBoard(10,10);
 var charstyle = 'black';

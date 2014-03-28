@@ -8,7 +8,7 @@ function DrawWord(x,y){
 DrawWord.prototype.refresh = function() {
   this.context.clearRect(0, 0, this.canvas.width, this.canvas.height);
   this.now = new Date();
-}
+};
 
 DrawWord.prototype.loop = function() {
   var t = this.now; // this.now?
@@ -17,9 +17,9 @@ DrawWord.prototype.loop = function() {
   for(var i in timeline)
   {
     this.context.fillText(timeline[i],this.pos_x,this.y);
-    this.pos_x += (i % 2 == 0)?charspace : charspace/2;
+    this.pos_x += (i % 2 === 0)?charspace : charspace/2;
   }
-}
+};
 
 DrawWord.prototype.print = function(style,font,space) {
   this.refresh();
@@ -30,11 +30,11 @@ DrawWord.prototype.print = function(style,font,space) {
   //var t = this.now;
   //this & var ?
   this.loop();
-}
+};
 
 var clock = new DrawWord(10,10);
 var charstyle = 'black';
 var font = '35px arial';
 var charspace = 50; //px
 
-setInterval("clock.print(charstyle,font,charspace)", 1000);
+setInterval("clock.print(charstyle,font,charspace);", 1000);
