@@ -17,8 +17,7 @@ DrawWord.prototype.loop = function() {
   for(var i in timeline)
   {
     this.context.fillText(timeline[i],this.pos_x,this.y);
-    this.pos_x += charspace/2;
-    if (i % 2 == 0) this.pos_x += charspace/2;
+    this.pos_x += (i % 2 == 0)?charspace : charspace/2;
   }
 }
 
