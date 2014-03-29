@@ -15,10 +15,21 @@ function DrawBoard(x,y) {
 DrawBoard.prototype.TimeParse = function() {
   this.context.clearRect(0, 0, this.canvas.width, this.canvas.height);
   var now = new Date();
-  var h = (now.getHours()-1)%12+1;
-  var m = now.getMinutes();
+  //var h = (now.getHours()-1)%12+1;
+  //var m = now.getMinutes();
+ 
+  this.mm++;
+  if(this.mm == 60)
+  {
+    this.hh++;
+  }
+  
+  this.mm %= 60;
+  this.hh %= 24;
   
   console.log(this.mm);
+  var h = this.hh;
+  var m = this.mm;
   
   this.circuit = [
     [h>=10,h%10===1,h===5,h===3,h===4],
@@ -66,4 +77,5 @@ var charspace = 50; //px
 timeboard.init(charstyle,font,charspace);
 timeboard.hh=0;
 timeboard.mm=0;
-setInterval("timeboard.TimeParse();",1000);
+setInterval("timeboard.TimeParse();",100);
+//setInterval("timeboard.TimeParse();",1000);

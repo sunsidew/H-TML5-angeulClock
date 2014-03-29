@@ -18,8 +18,6 @@ DrawBoard.prototype.TimeParse = function() {
   var h = (now.getHours()-1)%12+1;
   var m = now.getMinutes();
   
-  console.log(this.mm);
-  
   this.circuit = [
     [h>=10,h%10===1,h===5,h===3,h===4],
     [h%10===2,h===6,h===5||h===6,h===7,h===7],
@@ -33,21 +31,8 @@ DrawBoard.prototype.TimeParse = function() {
 
 DrawBoard.prototype.DrawCircuit = function() {
   for(var i = 0 ; i < 5 ; i++) {
-    for(var j = 0 ; j < 5 ; j++) {     
-     
-      this.context.strokeStyle = '#A17E5E';
-      this.context.strokeText(this.board[i][j],this.x+charspace*j, this.y+charspace*i);
-      
-      this.context.shadowBlur = 2;
-      this.context.shadowColor = 'black';
-      this.context.shadowOffsetX = 1;
-      this.context.shadowOffsetY = 0;
-      //this.context.strokeStyle = "black";
-      //this.context.strokeText(this.circuit[i][j]? this.board[i][j] : " " ,this.x+charspace*j, this.y+charspace*i);
-      
-      this.context.fillStyle = 'white';
-      this.context.fillText(this.circuit[i][j]? this.board[i][j] : " " ,this.x+charspace*j, this.y+charspace*i);
-
+    for(var j = 0 ; j < 5 ; j++) {
+        this.context.fillText(this.circuit[i][j]? this.board[i][j] : " " ,this.x+charspace*j, this.y+charspace*i);
     }
   }
 };
@@ -58,12 +43,10 @@ DrawBoard.prototype.init = function(style,font,space) {
   this.context.textBaseline = "top";
 };
 
-var timeboard = new DrawBoard(30,30);
-var charstyle = 'white';
-var font = 'bold 36px Nanum Myeongjo';
+var timeboard = new DrawBoard(10,10);
+var charstyle = 'black';
+var font = '35px 궁서체';
 var charspace = 50; //px
 
 timeboard.init(charstyle,font,charspace);
-timeboard.hh=0;
-timeboard.mm=0;
 setInterval("timeboard.TimeParse();",1000);
