@@ -13,8 +13,7 @@ function DrawBoard(x,y) {
 }
 
 DrawBoard.prototype.TimeParse = function() {
-  this.context.clearRect(0, 0, this.canvas.width, this.canvas.height);
-  var now = new Date();
+  //var now = new Date();
   //var h = (now.getHours()-1)%12+1;
   //var m = now.getMinutes();
  
@@ -26,17 +25,21 @@ DrawBoard.prototype.TimeParse = function() {
   
   this.mm %= 60;
   this.hh %= 24;
-  
-  console.log(this.mm);
-  var h = this.hh;
+
+  var h = (this.hh-1)%12+1;
   var m = this.mm;
   
+  var mid = h%12===0;
+  var oclock = (m>=0&&m<5);
+  
+  this.context.clearRect(0, 0, this.canvas.width, this.canvas.height);
+  
   this.circuit = [
-    [h>=10,h%10===1,h===5,h===3,h===4],
-    [h%10===2,h===6,h===5||h===6,h===7,h===7],
-    [h==8,h===8,h===9,h===9,h!==0],
-    [h===0,h===0,m>=20&&m<30,m>=30&&m<40,(m>=10&&m<20)||(m>=30&&m<40)],
-    [m>=40&&m<50,m>=50,(m>=20&&m<30)||m>=40,m%10>=5,m>=5]
+    [h>=10||(mid&&!oclock),h%10===1,h===5,h===3,h===4],
+    [h%10===2||(mid&&!oclock),h===6,h===5||h===6,h===7,h===7],
+    [h===8,h===8,h===9,h===9,!mid||!oclock],
+    [h===0&&oclock,mid&&oclock,m>=20&&m<30,m>=30&&m<40,(m>=10&&m<20)||(m>=30&&m<40)],
+    [m>=40&&m<50,h==12&&oclock||m>=50,(m>=20&&m<30)||m>=40,m%10>=5,m>=5]
   ];
   
   this.DrawCircuit();
