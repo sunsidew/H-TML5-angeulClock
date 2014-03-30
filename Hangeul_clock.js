@@ -28,10 +28,12 @@ DrawBoard.prototype.TimeParse = function() {
     [m>=40&&m<50,m>=50,(m>=20&&m<30)||m>=40,m%10>=5,m>=5]
   ];
   
-  this.DrawCircuit();
+  this.FrameDraw();
 };
 
-DrawBoard.prototype.DrawCircuit = function() {
+DrawBoard.prototype.FrameDraw = function() {
+  this.context.drawImage(this.backimg,0,0,300,300);
+
   for(var i = 0 ; i < 5 ; i++) {
     for(var j = 0 ; j < 5 ; j++) {     
      
@@ -55,6 +57,8 @@ DrawBoard.prototype.DrawCircuit = function() {
 DrawBoard.prototype.init = function(style,font,space) {
   this.context.fillStyle = style;
   this.context.font = font;
+  this.backimg = new Image();
+  this.backimg.src = 'http://www.copperventhoods.com/images/lightbrown_800.jpg';
   this.context.textBaseline = "top";
 };
 
