@@ -12,17 +12,41 @@ function DrawBoard(x,y) {
   ];
 }
 
+DrawBoard.prototype.testeregg = function() {
+  if (!this.accel) {
+    this.accel = true;
+  }
+  else {
+    this.accel = false;
+    this.ho = 0;
+    this.mi = 0;
+  }
+};
+
 DrawBoard.prototype.TimeParse = function() {
-  this.context.clearRect(0, 0, this.canvas.width, this.canvas.height);
-  var now = new Date();
+  var now, h, m;
   
-  var h = (now.getHours()-1)%12+1;
-  var m = now.getMinutes();
+  if (!this.accel) {
+    now = new Date();
+  
+    h = (now.getHours()-1)%12+1;
+    m = now.getMinutes();
+  }
+  else {
+    this.mi++;
+    if (this.mi >= 60) { this.ho++; }
+    if (this.ho >= 24) { this.ho=0; }
+    this.ho = (this.ho-1)%12+1;
+    
+    h = this.ho;
+    m = this.mi;
+  }
   
   var mid = h%12===0;
   var oclock = (m>=0&&m<5);
   
-  console.log(h,m);
+  this.context.clearRect(0, 0, this.canvas.width, this.canvas.height);
+  
   this.circuit = [
     [h>=10||(mid&&!oclock),h%10===1,h===5,h===3,h===4],
     [h%10===2||(mid&&!oclock),h===6,h===5||h===6,h===7,h===7],
@@ -43,15 +67,15 @@ DrawBoard.prototype.FrameDraw = function() {
       this.context.strokeStyle = '#A17E5E';
       this.context.strokeText(this.board[i][j],this.x+charspace*j, this.y+charspace*i);
       
-      this.context.shadowBlur = 2;
+      this.context.shadowBlur = 5;
       this.context.shadowColor = 'black';
-      this.context.shadowOffsetX = 1;
+      this.context.shadowOffsetX = 0;
       this.context.shadowOffsetY = 0;
       //this.context.strokeStyle = "black";
       //this.context.strokeText(this.circuit[i][j]? this.board[i][j] : " " ,this.x+charspace*j, this.y+charspace*i);
       
       this.context.fillStyle = 'white';
-      this.context.fillText(this.circuit[i][j]? this.board[i][j] : " " ,this.x+charspace*j, this.y+charspace*i);
+      this.context.fillText(this.circuit[i][j]? this.board[i][j] : "" ,this.x+charspace*j, this.y+charspace*i);
 
     }
   }
@@ -71,6 +95,5 @@ var font = 'bold 36px Nanum Myeongjo';
 var charspace = 50; //px
 
 timeboard.init(charstyle,font,charspace);
-timeboard.hh=0;
-timeboard.mm=0;
+timeboard.accel=false;
 setInterval("timeboard.TimeParse();",1000);
