@@ -96,4 +96,7 @@ var charspace = 50; //px
 
 timeboard.init(charstyle,font,charspace);
 timeboard.accel=false;
-setInterval("timeboard.TimeParse();",1000);
+
+setInterval(function() {
+  timeboard.TimeParse();
+},1000);
