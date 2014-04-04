@@ -12,6 +12,8 @@ function DrawBoard(x,y) {
   ];
 }
 
+// Not yet
+/*
 DrawBoard.prototype.testeregg = function() {
   if (!this.accel) {
     this.accel = true;
@@ -22,6 +24,7 @@ DrawBoard.prototype.testeregg = function() {
     this.mi = 0;
   }
 };
+*/
 
 DrawBoard.prototype.TimeParse = function() {
   var now, h, m;
