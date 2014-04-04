@@ -17,8 +17,7 @@ function DrawBoard(x,y) {
 DrawBoard.prototype.testeregg = function() {
   if (!this.accel) {
     this.accel = true;
-  }
-  else {
+  } else {
     this.accel = false;
     this.ho = 0;
     this.mi = 0;
@@ -37,8 +36,7 @@ DrawBoard.prototype.TimeParse = function() {
     
     h = this.ho;
     m = this.mi;*/
-  }
-  else {
+  } else {
     now = new Date();
   
     h = (now.getHours()-1)%12+1;
@@ -65,8 +63,7 @@ DrawBoard.prototype.FrameDraw = function() {
   this.context.drawImage(this.backimg,0,0,300,300);
 
   for(var i = 0 ; i < 5 ; i++) {
-    for(var j = 0 ; j < 5 ; j++) {     
-     
+    for(var j = 0 ; j < 5 ; j++) {
       this.context.strokeStyle = '#A17E5E';
       this.context.strokeText(this.board[i][j],this.x+charspace*j, this.y+charspace*i);
       
@@ -79,7 +76,6 @@ DrawBoard.prototype.FrameDraw = function() {
       
       this.context.fillStyle = 'white';
       this.context.fillText(this.circuit[i][j]? this.board[i][j] : "" ,this.x+charspace*j, this.y+charspace*i);
-
     }
   }
 };
