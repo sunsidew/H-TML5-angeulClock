@@ -27,13 +27,13 @@ DrawBoard.prototype.TimeParse = function() {
   var now, h, m;
   
   if (this.accel) {
-    this.mi++;
+    /*this.mi++;
     if (this.mi >= 60) { this.ho++; }
     if (this.ho >= 24) { this.ho=0; }
     this.ho = (this.ho-1)%12+1;
     
     h = this.ho;
-    m = this.mi;
+    m = this.mi;*/
   }
   else {
     now = new Date();
