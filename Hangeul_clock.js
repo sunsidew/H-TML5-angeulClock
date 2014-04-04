@@ -26,13 +26,7 @@ DrawBoard.prototype.testeregg = function() {
 DrawBoard.prototype.TimeParse = function() {
   var now, h, m;
   
-  if (!this.accel) {
-    now = new Date();
-  
-    h = (now.getHours()-1)%12+1;
-    m = now.getMinutes();
-  }
-  else {
+  if (this.accel) {
     this.mi++;
     if (this.mi >= 60) { this.ho++; }
     if (this.ho >= 24) { this.ho=0; }
@@ -40,6 +34,12 @@ DrawBoard.prototype.TimeParse = function() {
     
     h = this.ho;
     m = this.mi;
+  }
+  else {
+    now = new Date();
+  
+    h = (now.getHours()-1)%12+1;
+    m = now.getMinutes();
   }
   
   var mid = h%12===0;
