@@ -3,7 +3,7 @@ H-TML5-angeulClock
 
 Coded by HTML5 + Javascript
 
-Remade from Arduino [HangulClock](https://github.com/suapapa/HangulClock)
+Remade from Homin Lee's Arduino Project [HangulClock](https://github.com/suapapa/HangulClock)
 
 
 ## License
